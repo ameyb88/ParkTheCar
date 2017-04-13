@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Park The Car</title>
+</head>
+
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script rel="stylesheet" type="text/css" href="js/bootstrap.min.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous">
+</script>
+
+<body>
+
+	<div class="container">
+		<div class = "row topMargin ">
+			<div class="col-md-1 pull-left">
+
+					<img onclick="getLocation()" id="curr_location" class="imgBorder mainImages img-circle" src="img/curr_location.jpg" >
+
+					<!-- Image trigger modal -->
+
+                    <img id="myImg" class="imgBorder mainImages img-circle" src="img/famous_location.jpg" >
+
+			</div> <!-- col-md-2 div ends -->
+
+			<div class="col-md-9">
+				<div id="map">
+				</div>
+			</div>
+
+			<div class="col-md-2 searchBar pull-right" id="parkingListDiv" data-bind="visible: listDivVisible">
+				<div class="form" id="theFilteredList">
+			        <div class="form-group">
+			            <label>Quick Search</label>
+			            <input type="search" class="form-control" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off" />
+			        </div>
+			    </div>
+
+    			<ul class="list-group" id="the_parking_list_group" data-bind="foreach: restaurantArray1">
+				  <li class="list-group-item" id="listIdParking" data-bind="text: title, click: $root.listItemClick"></li>
+				</ul>
+			</div>
+
+		</div> <!-- row div ends -->
+
+
+	</div> <!-- container div ends -->
+
+<!-- Modal -->
+<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3 id="myModalLabel"><b>Entertainment Spots Nearby<b></h3>
+	</div>
+	<div class="modal-body">
+		<div class="container theModalImages" > <!-- div for table of images -->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-3">
+							<div class="card" style="width: 20rem;">
+								<figure>
+									<img class="card-img-top card_alignment pic_size" id="restaurant" src="img/restaurant.jpg" alt="Card image cap">
+									 <figcaption>Restaurants</figcaption>
+								</figure>
+
+							</div>
+						</div>
+
+						<div class="col-md-3">
+							<div class="card card_space" style="width: 20rem;">
+								<figure>
+								  	<img class="card-img-top card_alignment pic_size" id="cafe" src="img/cafe.jpg" alt="Card image cap">
+								  	<figcaption>Coffee Places</figcaption>
+								</figure>
+							</div>
+						</div>
+					</div> <!-- nested row ends -->
+
+
+					<div class="row">
+							<div class="col-md-3">
+									<div class="card" style="width: 20rem;">
+										<figure>
+											  <img class="card-img-top card_alignment pic_size bottomImages" id="bar" src="img/bar.jpg" alt="Card image cap" >
+											  <figcaption>Bars</figcaption>
+										</figure>
+									</div>
+							</div>
+							<div class="col-md-3">
+									<div class="card card_space" style="width: 20rem;">
+										<figure>
+										  	<img class="card-img-top card_alignment pic_size bottomImages" id="movie_theater" src="img/theater.jpg" alt="Card image cap">
+										    <figcaption>Movie Theaters</figcaption>
+										</figure>
+									</div>
+							</div>
+
+					</div> <!-- row div ends -->
+
+
+				</div> <!-- col-md-6 ends -->
+
+				<div class="col-md-4 col-md-pull-2 " id="the_list_div" data-bind="visible: listDivVisible">
+					<ul class="list-group" id="the_list_group" data-bind="foreach: restaurantArray">
+						<li class="list-group-item" id="listId" data-bind="text: title, click: $root.listItemClick"></li>
+					</ul>
+				</div>
+
+
+			</div> <!-- row div ends -->
+
+
+		</div> <!-- container div ends -->
+	</div>
+
+</div>
+
+<script type='text/javascript' src='js/knockout.js'></script>
+<script src="js/script.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-MgaIPsFJ5MF3Ia842J3PaLwsBZMnaUc&libraries=places&callback=initMap" async defer></script>
+
+</body>
+</html>
